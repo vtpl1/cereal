@@ -52,6 +52,11 @@ TEST_CASE("json_std_variant")
   test_std_variant<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_std_variant")
+{
+  test_std_variant<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();
 
 #endif // CEREAL_HAS_CPP17

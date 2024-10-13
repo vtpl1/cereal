@@ -49,4 +49,9 @@ TEST_CASE("json_complex")
   test_complex<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_complex")
+{
+  test_complex<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();

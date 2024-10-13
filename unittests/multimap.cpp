@@ -49,4 +49,9 @@ TEST_CASE("json_multimap")
   test_multimap<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_multimap")
+{
+  test_multimap<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();

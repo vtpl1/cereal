@@ -49,4 +49,9 @@ TEST_CASE("json_bitset")
   test_bitset<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_bitset")
+{
+  test_bitset<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();

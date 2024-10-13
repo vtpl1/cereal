@@ -49,6 +49,11 @@ TEST_CASE("json_pod")
   test_pod<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_pod")
+{
+  test_pod<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_CASE("xml_pod_serialization")
 {
   test_pod_serialization<cereal::XMLInputArchive, cereal::XMLOutputArchive>();
@@ -57,6 +62,11 @@ TEST_CASE("xml_pod_serialization")
 TEST_CASE("json_pod_serialization")
 {
   test_pod_serialization<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
+}
+
+TEST_CASE("yaml_pod_serialization")
+{
+  test_pod_serialization<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
 }
 
 TEST_SUITE_END();

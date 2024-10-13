@@ -49,6 +49,11 @@ TEST_CASE("json_string_basic")
   test_string_basic<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_string_basic")
+{
+  test_string_basic<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 template <class IArchive, class OArchive, class Out, class In = Out>
 void test_ws_in_out(Out const & o_value_with_ws)
 {
@@ -92,6 +97,29 @@ TEST_CASE("xml_string_issue109")
   }
 }
 
+TEST_CASE("yaml_string_issue109")
+{
+  char strings[][20] = {
+    "some text",
+    "some text ",
+    " some text",
+    " some text ",
+    "  ",
+    "    text    ",
+    " ]]> ",
+    " &gt; > ]]> ",
+    " < <]>] &lt; ",
+    " &amp; &   "
+  };
+
+  for( size_t i=0; i<( sizeof( strings ) / sizeof( strings[0] ) ); ++i )
+  {
+    std::basic_string<char> o_string = strings[i];
+
+    test_ws_in_out<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>( o_string );
+  }
+}
+
 TEST_CASE("xml_char_issue109")
 {
   uint8_t chars[] = {
@@ -121,6 +149,38 @@ TEST_CASE("xml_char_issue109")
   for( size_t i=0; i<( sizeof( chars ) / sizeof( chars[0] ) ); ++i )
   {
     test_ws_in_out<cereal::XMLInputArchive, cereal::XMLOutputArchive>( char( chars[i] ) );
+  }
+}
+
+TEST_CASE("yaml_char_issue109")
+{
+  uint8_t chars[] = {
+    ' ',
+    '\t',
+    '\n',
+    '\r',
+    '&',
+    '>',
+    '<',
+    '\'',
+    '"',
+    '!',
+    '|'
+  };
+
+  for( size_t i=0; i<( sizeof( chars ) / sizeof( chars[0] ) ); ++i )
+  {
+    test_ws_in_out<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>( chars[i] );
+  }
+
+  for( size_t i=0; i<( sizeof( chars ) / sizeof( chars[0] ) ); ++i )
+  {
+    test_ws_in_out<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>( int8_t( chars[i] ) );
+  }
+
+  for( size_t i=0; i<( sizeof( chars ) / sizeof( chars[0] ) ); ++i )
+  {
+    test_ws_in_out<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>( char( chars[i] ) );
   }
 }
 
@@ -166,6 +226,21 @@ TEST_CASE("xml_string_issue_consecutive_calls")
     };
 
     test_ws_in_out_array<cereal::XMLInputArchive, cereal::XMLOutputArchive>(strings);
+}
+
+TEST_CASE("yaml_string_issue_consecutive_calls")
+{
+    std::string strings[] = {
+        "some text",
+        " some text",
+        " some text ",
+        "Long text without ws at the end",
+        "some text ",
+        " some text",
+        " some text ",
+    };
+
+    test_ws_in_out_array<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>(strings);
 }
 
 TEST_SUITE_END();

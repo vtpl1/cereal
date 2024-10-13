@@ -6,6 +6,7 @@ if(PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     set(CEREAL_MASTER_PROJECT ON)
 endif()
 
+set(CMAKE_CXX_STANDARD 17)
 option(SKIP_PORTABILITY_TEST "Skip portability (32 bit) tests" OFF)
 include(CheckCXXCompilerFlag)
 set(CMAKE_REQUIRED_FLAGS "-m32")
@@ -17,7 +18,7 @@ endif()
 
 option(BUILD_DOC "Build documentation" ON)
 option(BUILD_SANDBOX "Build sandbox examples" ON)
-option(SKIP_PERFORMANCE_COMPARISON "Skip building performance sandbox comparison (requires boost)" OFF)
+option(SKIP_PERFORMANCE_COMPARISON "Skip building performance sandbox comparison (requires boost)" ON)
 
 # TODO: should not be needed! CK
 if(NOT CMAKE_VERSION VERSION_LESS 3.0) # installing cereal requires INTERFACE lib
@@ -44,6 +45,8 @@ else()
     if(WITH_WERROR)
         add_compile_options(-Werror)
     endif()
+    add_compile_options(-Wno-dangling-reference)
+    add_compile_options(-Wno-implicit-fallthrough)
 
     option(CLANG_USE_LIBCPP "Use libc++ for clang compilation" OFF)
     if(APPLE OR CLANG_USE_LIBCPP)
@@ -60,7 +63,7 @@ else()
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
-
+find_package(yaml-cpp REQUIRED)
 add_library(cereal INTERFACE)
 add_library(cereal::cereal ALIAS cereal)
 target_include_directories(cereal INTERFACE
@@ -73,6 +76,9 @@ if(NOT CMAKE_VERSION VERSION_LESS 3.8)
     target_compile_features(cereal INTERFACE cxx_std_11)
 endif()
 
+target_link_libraries(cereal 
+    INTERFACE yaml-cpp::yaml-cpp
+)
 
 option(CEREAL_INSTALL "Generate the install target" ${CEREAL_MASTER_PROJECT})
 if(CEREAL_INSTALL)

@@ -52,6 +52,11 @@ TEST_CASE("json_std_optional")
   test_std_optional<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_std_optional")
+{
+  test_std_optional<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();
 
 #endif // CEREAL_HAS_CPP17

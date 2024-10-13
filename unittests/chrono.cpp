@@ -49,4 +49,9 @@ TEST_CASE("json_chrono")
   test_chrono<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_chrono")
+{
+  test_chrono<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();

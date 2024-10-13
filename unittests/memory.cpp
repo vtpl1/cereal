@@ -49,6 +49,11 @@ TEST_CASE("json_memory")
   test_memory<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_memory")
+{
+  test_memory<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_CASE("binary_default_construction")
 {
   test_default_construction<cereal::BinaryInputArchive, cereal::BinaryOutputArchive>();
@@ -67,6 +72,11 @@ TEST_CASE("xml_default_construction")
 TEST_CASE("json_default_construction")
 {
   test_default_construction<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
+}
+
+TEST_CASE("yaml_default_construction")
+{
+  test_default_construction<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
 }
 
 TEST_SUITE_END();

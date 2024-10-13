@@ -1,0 +1,39 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	"name": "Existing Dockerfile",
+	"build": {
+		"context": "..",
+		"dockerfile": "../docker/dev/dev.ubuntu_22.04.Dockerfile"
+	},
+	"runArgs": [],
+	"containerEnv": {
+		"VCPKG_BINARY_SOURCES": "clear;files,${containerWorkspaceFolder}/../thirdparty/vcpkg_cache,readwrite",
+		"VCPKG_ROOT": "${containerWorkspaceFolder}/../thirdparty/vcpkg"
+	},
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:${containerWorkspaceFolder}/build/vcpkg_installed/x64-linux/tools/gstreamer",
+		// "LD_LIBRARY_PATH": "${containerEnv:LD_LIBRARY_PATH}:${containerWorkspaceFolder}/../thirdparty/vcpkg/buildtrees/gstreamer/x64-linux-rel"
+		"LD_LIBRARY_PATH": "${containerEnv:LD_LIBRARY_PATH}:${containerWorkspaceFolder}/lib_module_dependencies:${containerWorkspaceFolder}/thirdparty/lib"
+	},
+	"mounts": [
+		"source=${localWorkspaceFolder}/../thirdparty,target=${containerWorkspaceFolder}/../thirdparty,type=bind,consistency=cached",
+		"source=/etc/localtime,target=/etc/localtime,type=bind,readonly"
+	],
+	// "remoteUser": "dlstreamer",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cmake-tools",
+				"wmaurer.change-case",
+				"ms-vscode.cpptools",
+				"ms-vscode.cpptools-themes",
+				"vadimcn.vscode-lldb",
+				"ms-vscode.cpptools-extension-pack"
+			],
+			"settings": {
+				"cmake.options.statusBarVisibility": "visible"
+			}
+		}
+	}
+}

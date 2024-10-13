@@ -49,6 +49,11 @@ TEST_CASE("json_map")
   test_map<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_map")
+{
+  test_map<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_CASE("binary_map_memory")
 {
   test_map_memory<cereal::BinaryInputArchive, cereal::BinaryOutputArchive>();
@@ -67,6 +72,11 @@ TEST_CASE("xml_map_memory")
 TEST_CASE("json_map_memory")
 {
   test_map_memory<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
+}
+
+TEST_CASE("yaml_map_memory")
+{
+  test_map_memory<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
 }
 
 TEST_SUITE_END();

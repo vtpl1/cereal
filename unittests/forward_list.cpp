@@ -49,4 +49,9 @@ TEST_CASE("json_forward_list")
   test_forward_list<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_forward_list")
+{
+  test_forward_list<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();

@@ -49,4 +49,9 @@ TEST_CASE("json_memory_cycles")
   test_memory_cycles<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_memory_cycles")
+{
+  test_memory_cycles<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();

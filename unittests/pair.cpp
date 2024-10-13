@@ -43,9 +43,15 @@ TEST_CASE("xml_pair")
 {
   test_pair<cereal::XMLInputArchive, cereal::XMLOutputArchive>();
 }
+
 TEST_CASE("json_pair")
 {
   test_pair<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
+}
+
+TEST_CASE("yaml_pair")
+{
+  test_pair<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
 }
 
 TEST_SUITE_END();

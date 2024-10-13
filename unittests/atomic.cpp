@@ -49,4 +49,9 @@ TEST_CASE("json_atomic")
   test_atomic<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_atomic")
+{
+  test_atomic<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();

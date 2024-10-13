@@ -49,4 +49,9 @@ TEST_CASE("json_memory_load_construct")
   test_memory_load_construct<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_memory_load_construct")
+{
+  test_memory_load_construct<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();

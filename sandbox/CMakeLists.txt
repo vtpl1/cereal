@@ -12,6 +12,9 @@ target_link_libraries(sandbox_rtti ${CEREAL_THREAD_LIBS})
 add_executable(sandbox_vs sandbox_vs.cpp)
 target_link_libraries(sandbox_vs sandbox_vs_dll)
 
+add_executable(sandbox_yaml sandbox_yaml.cpp)
+target_link_libraries(sandbox_yaml ${CEREAL_THREAD_LIBS})
+
 if(Boost_FOUND AND NOT SKIP_PERFORMANCE_COMPARISON)
   add_executable(performance performance.cpp)
   if(MSVC)

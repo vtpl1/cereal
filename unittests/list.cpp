@@ -49,4 +49,9 @@ TEST_CASE("json_list")
   test_list<cereal::JSONInputArchive, cereal::JSONOutputArchive>();
 }
 
+TEST_CASE("yaml_list")
+{
+  test_list<cereal::YAMLInputArchive, cereal::YAMLOutputArchive>();
+}
+
 TEST_SUITE_END();
